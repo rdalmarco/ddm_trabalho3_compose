@@ -47,7 +47,7 @@ fun InicialScreen(navController: NavController) {
                 )
 
                 Button(
-                    onClick = { /* Implementar ação do botão Máquinas */ },
+                    onClick = { navController.navigate("consultaMaquinasScreen") },
                     modifier = Modifier
                         .width(320.dp)
                         .height(60.dp),
@@ -56,7 +56,7 @@ fun InicialScreen(navController: NavController) {
                 }
 
                 Button(
-                    onClick = { /* Implementar ação do botão Ordens de Serviço */ },
+                    onClick = { navController.navigate("consultaOrdensScreen") },
                     modifier = Modifier
                         .width(320.dp)
                         .height(60.dp),
@@ -65,7 +65,7 @@ fun InicialScreen(navController: NavController) {
                 }
 
                 Button(
-                    onClick = { /* Implementar ação do botão Relatórios */ },
+                    onClick = { navController.navigate("relatoriosScreen") },
                     modifier = Modifier
                         .width(320.dp)
                         .height(60.dp),

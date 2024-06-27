@@ -17,5 +17,12 @@ fun BottomNavigationBar(navController: NavController) {
             icon = { /* Icon */ },
             label = { androidx.compose.material3.Text("Inicial Screen") }
         )
+
+        BottomNavigationItem(
+            selected = navController.currentDestination?.route == "perfilScreen",
+            onClick = { navController.navigate("perfilScreen") },
+            icon = { /* Icon */ },
+            label = { androidx.compose.material3.Text("Perfil Screen") }
+        )
     }
 }
