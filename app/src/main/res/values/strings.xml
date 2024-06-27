@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ddm_trabalho3</string>
+    <string name="btnVoltar">Botao Voltar</string>
+    <string name="edtNomeCompleto">Nome Completo</string>
+    <string name="edtEmail">Email</string>
+    <string name="edtSenha">Senha</string>
+    <string name="btnConfirmar">Confirmar</string>
 </resources>
