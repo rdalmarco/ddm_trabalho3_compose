@@ -13,12 +13,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.ddm_trabalho3.R
 import com.example.ddm_trabalho3.ui.components.BottomNavigationBar
+import com.example.ddm_trabalho3.ui.viewmodels.PerfilViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.PerfilViewModelFactory
 
 @Composable
 fun CadastrarScreen(navController: NavController) {
+    val context = LocalContext.current
+    val perfilViewModel: PerfilViewModel = viewModel(factory = PerfilViewModelFactory(context))
+
     Surface(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -80,7 +86,8 @@ fun CadastrarScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.Center,
             ) {
                 Button(
-                    onClick = { navController.navigate("loginScreen") },
+                    onClick = { perfilViewModel.cadastrarUser("Rafael", "Teste", "XXX")
+                                navController.navigate("loginScreen")},
                     modifier = Modifier
                         .weight(1f)
                         .padding(start = 12.dp),
