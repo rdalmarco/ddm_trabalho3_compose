@@ -16,9 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.ddm_trabalho3.R
-import com.example.ddm_trabalho3.ui.components.BottomNavigationBar
-import com.example.ddm_trabalho3.ui.viewmodels.PerfilViewModel
-import com.example.ddm_trabalho3.ui.viewmodels.PerfilViewModelFactory
+import com.example.ddm_trabalho3.ui.viewmodels.Perfil.PerfilViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.Perfil.PerfilViewModelFactory
 
 @Composable
 fun CadastrarScreen(navController: NavController) {

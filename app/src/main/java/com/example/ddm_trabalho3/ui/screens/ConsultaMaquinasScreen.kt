@@ -1,4 +1,5 @@
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
@@ -17,14 +18,22 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.ddm_trabalho3.ui.components.BottomNavigationBar
+import com.example.ddm_trabalho3.ui.viewmodels.Maquina.MaquinaViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.Maquina.MaquinaViewModelFactory
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ConsultaMaquinasScreen(navController: NavController) {
     var filtroText by remember { mutableStateOf("") }
-    val maquinasList = listOf("Máquina 1", "Máquina 2", "Máquina 3") // Exemplo de dados
+
+    val context = LocalContext.current
+    val maquinaViewModel: MaquinaViewModel = viewModel(factory = MaquinaViewModelFactory(context))
+    val maquinasList by maquinaViewModel.listaMaquinas.collectAsState()
+
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController = navController)
@@ -84,7 +93,6 @@ fun ConsultaMaquinasScreen(navController: NavController) {
                     }
                 )
 
-                // ListView
                 LazyColumn(
                     modifier = Modifier
                         .weight(1f)
@@ -92,7 +100,10 @@ fun ConsultaMaquinasScreen(navController: NavController) {
                 ) {
                     items(maquinasList) { maquina ->
                         Text(
-                            text = maquina,
+                            text =  "${"Tag: " + maquina.tag} \n" +
+                                    "${"Modelo: " + maquina.modelo} \n" +
+                                    "${"Observação: " + maquina.observacao} \n" +
+                                    "${"Status: " + maquina.status}",
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 10.dp)

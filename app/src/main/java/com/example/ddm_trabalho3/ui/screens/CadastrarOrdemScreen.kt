@@ -16,11 +16,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.ddm_trabalho3.ui.components.BottomNavigationBar
+import com.example.ddm_trabalho3.ui.viewmodels.Maquina.MaquinaViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.Maquina.MaquinaViewModelFactory
+import com.example.ddm_trabalho3.ui.viewmodels.Ordem.OrdemViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.Ordem.OrdemViewModelFactory
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -34,6 +40,9 @@ fun CadastrarOrdemScreen(navController: NavController) {
     var maqCodigoExpanded by remember { mutableStateOf(false) }
     var statusExpanded by remember { mutableStateOf(false) }
     var tipoExpanded by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+    val ordemViewModel: OrdemViewModel = viewModel(factory = OrdemViewModelFactory(context))
 
     Scaffold(
         bottomBar = {
@@ -190,13 +199,13 @@ fun CadastrarOrdemScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(100.dp))
 
-            // Botões Cancelar e Confirmar
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Button(
-                    onClick = { /* Ação para salvar */ },
+                    onClick = { ordemViewModel.cadastrarOrdem("", "", true, "")
+                              navController.navigate("consultaOrdensScreen")},
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "Salvar")

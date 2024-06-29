@@ -8,12 +8,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.ddm_trabalho3.ui.components.BottomNavigationBar
+import com.example.ddm_trabalho3.ui.viewmodels.Login.LoginViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.Login.LoginViewModelFactory
 
 @Composable
 fun LoginScreen(navController: NavController) {
+    val context = LocalContext.current
+    val loginViewModel: LoginViewModel = viewModel(factory = LoginViewModelFactory(context))
+
     Surface(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -35,14 +41,14 @@ fun LoginScreen(navController: NavController) {
 
             OutlinedTextField(
                 value = "",
-                onValueChange = { /* Implementar lógica de alteração do texto */ },
+                onValueChange = {  },
                 label = { Text("Email") },
                 modifier = Modifier.fillMaxWidth(),
             )
 
             OutlinedTextField(
                 value = "",
-                onValueChange = { /* Implementar lógica de alteração do texto */ },
+                onValueChange = {  },
                 label = { Text("Senha") },
                 modifier = Modifier.fillMaxWidth(),
             )

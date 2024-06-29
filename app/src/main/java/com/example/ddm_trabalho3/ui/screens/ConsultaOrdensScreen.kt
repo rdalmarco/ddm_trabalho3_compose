@@ -12,17 +12,26 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.ddm_trabalho3.ui.components.BottomNavigationBar
+import com.example.ddm_trabalho3.ui.viewmodels.Maquina.MaquinaViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.Maquina.MaquinaViewModelFactory
+import com.example.ddm_trabalho3.ui.viewmodels.Ordem.OrdemViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.Ordem.OrdemViewModelFactory
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ConsultaOrdensScreen(navController: NavController) {
     var filtroText by remember { mutableStateOf("") }
-    val ordensList = listOf("Ordem 1", "Ordem 2", "Ordem 3") // Exemplo de dados
+
+    val context = LocalContext.current
+    val ordemViewModel: OrdemViewModel = viewModel(factory = OrdemViewModelFactory(context))
+    val ordemList by ordemViewModel.listaOrdens.collectAsState()
 
     Scaffold(
         bottomBar = {
@@ -78,9 +87,12 @@ fun ConsultaOrdensScreen(navController: NavController) {
                     .weight(1f)
                     .padding(vertical = 16.dp)
             ) {
-                items(ordensList) { ordem ->
+                items(ordemList) { ordem ->
                     Text(
-                        text = ordem,
+                        text =  "${"Tag: " + ordem.tag} \n" +
+                                "${"Tipo: " + ordem.tipo} \n" +
+                                "${"Descrição: " + ordem.descriao} \n" +
+                                "${"Data Criação: " + ordem.dataCriacao}",
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 10.dp)

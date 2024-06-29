@@ -1,5 +1,4 @@
-package com.example.ddm_trabalho3.ui.viewmodels
-
+package com.example.ddm_trabalho3.ui.viewmodels.Perfil
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

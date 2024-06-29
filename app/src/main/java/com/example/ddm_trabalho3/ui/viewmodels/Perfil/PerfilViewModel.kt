@@ -1,14 +1,12 @@
-package com.example.ddm_trabalho3.ui.viewmodels
+package com.example.ddm_trabalho3.ui.viewmodels.Perfil
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ddm_trabalho3.data.AppDatabase
 import com.example.ddm_trabalho3.data.dao.UserDao
-import com.example.ddm_trabalho3.domain.Maquina
 import com.example.ddm_trabalho3.domain.User
 import com.example.ddm_trabalho3.ui.Event
 import com.google.firebase.Firebase
