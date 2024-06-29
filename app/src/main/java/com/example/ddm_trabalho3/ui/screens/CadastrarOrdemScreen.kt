@@ -10,6 +10,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,6 +44,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
 
     val context = LocalContext.current
     val ordemViewModel: OrdemViewModel = viewModel(factory = OrdemViewModelFactory(context))
+    val listaMaquinas by ordemViewModel.listaMaquinas.collectAsState()
 
     Scaffold(
         bottomBar = {
@@ -105,13 +107,12 @@ fun CadastrarOrdemScreen(navController: NavController) {
                     expanded = maqCodigoExpanded,
                     onDismissRequest = { maqCodigoExpanded = false }
                 ) {
-                    val maquinas = listOf("Máquina 1", "Máquina 2", "Máquina 3")
-                    maquinas.forEach { maq ->
+                    listaMaquinas.forEach { maquina ->
                         DropdownMenuItem(onClick = {
-                            maqCodigoSelectedItem = maq
+                            maqCodigoSelectedItem = maquina.tag
                             maqCodigoExpanded = false
                         }) {
-                            Text(text = maq)
+                            Text(text = maquina.tag)
                         }
                     }
                 }
@@ -204,7 +205,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Button(
-                    onClick = { ordemViewModel.cadastrarOrdem("", "", true, "")
+                    onClick = { ordemViewModel.cadastrarOrdem(descricaoText, maqCodigoSelectedItem, true, tipoSelectedItem)
                               navController.navigate("consultaOrdensScreen")},
                     modifier = Modifier.weight(1f)
                 ) {
