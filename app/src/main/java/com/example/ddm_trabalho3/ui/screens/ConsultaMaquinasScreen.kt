@@ -19,6 +19,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.ddm_trabalho3.ui.components.BottomNavigationBar
@@ -99,11 +103,18 @@ fun ConsultaMaquinasScreen(navController: NavController) {
                         .padding(vertical = 16.dp)
                 ) {
                     items(maquinasList) { maquina ->
+
+                        val text = buildAnnotatedString {
+                            withStyle(style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp).toSpanStyle()) {
+                                append("Tag: ${maquina.tag}\n")
+                            }
+                            append("Modelo: ${maquina.modelo}\n")
+                            append("Observação: ${maquina.observacao}\n")
+                            append("Status: ${maquina.status}")
+                        }
+
                         Text(
-                            text =  "${"Tag: " + maquina.tag} \n" +
-                                    "${"Modelo: " + maquina.modelo} \n" +
-                                    "${"Observação: " + maquina.observacao} \n" +
-                                    "${"Status: " + maquina.status}",
+                            text =  text,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 10.dp)

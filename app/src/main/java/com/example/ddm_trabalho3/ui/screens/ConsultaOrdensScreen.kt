@@ -14,8 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.ddm_trabalho3.ui.components.BottomNavigationBar
@@ -23,6 +27,9 @@ import com.example.ddm_trabalho3.ui.viewmodels.Maquina.MaquinaViewModel
 import com.example.ddm_trabalho3.ui.viewmodels.Maquina.MaquinaViewModelFactory
 import com.example.ddm_trabalho3.ui.viewmodels.Ordem.OrdemViewModel
 import com.example.ddm_trabalho3.ui.viewmodels.Ordem.OrdemViewModelFactory
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -88,11 +95,19 @@ fun ConsultaOrdensScreen(navController: NavController) {
                     .padding(vertical = 16.dp)
             ) {
                 items(ordemList) { ordem ->
+                    val dataFormatada = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date(ordem?.dataCriacao ?: 0))
+
+                    val text = buildAnnotatedString {
+                        withStyle(style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp).toSpanStyle()) {
+                            append("Tag: ${ordem.tag}\n")
+                        }
+                        append("Tipo: ${ordem.tipo}\n")
+                        append("Descrição: ${ordem.descriao}\n")
+                        append("sTATUS: ${ordem.status}\n")
+                        append("Data Criação: $dataFormatada")
+                    }
                     Text(
-                        text =  "${"Tag: " + ordem.tag} \n" +
-                                "${"Tipo: " + ordem.tipo} \n" +
-                                "${"Descrição: " + ordem.descriao} \n" +
-                                "${"Data Criação: " + ordem.dataCriacao}",
+                        text = text,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 10.dp)
