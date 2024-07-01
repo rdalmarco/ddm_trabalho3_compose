@@ -14,8 +14,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
@@ -54,48 +57,49 @@ fun ConsultaMaquinasScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // Botão Cadastrar
-                Button(
+                androidx.compose.material3.Button(
                     onClick = { navController.navigate("cadastrarMaquinaScreen") },
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally)
+                        .padding(vertical = 8.dp),
                 ) {
-                    Text("Cadastrar")
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // Botão Filtrar
-                Button(
-                    onClick = { /* Lógica de filtro */ },
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    Text("Filtrar")
+                    Text(
+                        text = "Cadastrar",
+                        color = Color.White
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 // Campo de entrada para filtrar
-                BasicTextField(
+                TextField(
                     value = filtroText,
                     onValueChange = { filtroText = it },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp),
+                        .padding(8.dp),
+                    textStyle = TextStyle.Default.copy(color = if (filtroText.isEmpty()) Color.Gray else Color.Black),
                     singleLine = true,
-                    textStyle = TextStyle.Default.copy(color = Color.Black),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                    decorationBox = { innerTextField ->
-                        Box(
-                            Modifier
-                                .background(Color.LightGray)
-                                .padding(8.dp)
-                        ) {
-                            if (filtroText.isEmpty()) {
-                                Text("Filtrar", color = Color.Gray)
-                            }
-                            innerTextField()
-                        }
+                    placeholder = {
+                        Text("Digite para buscar...", color = Color.Gray)
                     }
                 )
+
+                // Botão Filtrar
+                androidx.compose.material3.Button(
+                    onClick = { /* Lógica de filtro */ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 2.dp, bottom = 8.dp),
+                ) {
+                    Text(
+                        text = "Filtrar",
+                        color = Color.White
+                    )
+                }
 
                 LazyColumn(
                     modifier = Modifier

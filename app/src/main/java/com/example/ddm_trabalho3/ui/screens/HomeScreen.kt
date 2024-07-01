@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -28,16 +30,15 @@ fun HomeScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            color = Color.Gray // Altere para a cor desejada de fundo
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Imagem no centro da tela
+
                 Image(
-                    painter = painterResource(id = com.example.ddm_trabalho3.R.drawable.ic_launcher_background), // Substitua com seu recurso de imagem
+                    painter = painterResource(id = com.example.ddm_trabalho3.R.drawable.logosmartain),
                     contentDescription = "Imagem",
                     modifier = Modifier
                         .size(200.dp)
@@ -45,18 +46,22 @@ fun HomeScreen(navController: NavController) {
                     contentScale = androidx.compose.ui.layout.ContentScale.Fit
                 )
 
-                // Botões "Cadastrar" e "Login"
                 Button(
-                    onClick = { navController.navigate("cadastrarScreen") },
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    onClick = { navController.navigate("loginScreen")  },
+                    modifier = Modifier
+                        .padding(bottom = 8.dp)
+                        .width(200.dp)
                 ) {
-                    Text("Cadastrar")
+                    Text("Entrar")
                 }
 
                 Button(
-                    onClick = { navController.navigate("loginScreen")  }
+                    onClick = { navController.navigate("cadastrarScreen") },
+                    modifier = Modifier
+                        .padding(bottom = 8.dp)
+                        .width(200.dp),
                 ) {
-                    Text("Login")
+                    Text("Cadastrar-se")
                 }
             }
         }

@@ -14,6 +14,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -22,22 +23,21 @@ import com.example.ddm_trabalho3.ui.screens.HomeScreen
 import com.example.ddm_trabalho3.ui.screens.InicialScreen
 import com.example.ddm_trabalho3.ui.screens.LoginScreen
 import com.example.ddm_trabalho3.ui.theme.Ddm_trabalho3Theme
+import com.example.ddm_trabalho3.ui.viewmodels.Perfil.PerfilViewModel
+import com.example.ddm_trabalho3.ui.viewmodels.Perfil.PerfilViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Ddm_trabalho3Theme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    // Initialize navigation controller
                     val navController = rememberNavController()
 
-                    // NavHost for navigation destinations
-                    NavHost(navController  = navController, startDestination = "homeScreen") {
+                    NavHost(navController, startDestination = "homeScreen") {
                         composable("homeScreen") { HomeScreen(navController) }
                         composable("loginScreen") { LoginScreen(navController) }
                         composable("inicialScreen") { InicialScreen(navController) }
@@ -45,7 +45,12 @@ class MainActivity : ComponentActivity() {
                         composable("consultaMaquinasScreen") { ConsultaMaquinasScreen(navController) }
                         composable("consultaOrdensScreen") { ConsultaOrdensScreen(navController) }
                         composable("relatoriosScreen") { RelatoriosScreen(navController) }
-                        composable("perfilScreen") { PerfilScreen(navController) }
+                        composable("perfilScreen") {
+                            val perfilViewModel: PerfilViewModel = viewModel(
+                                factory = PerfilViewModelFactory(applicationContext)
+                            )
+                            PerfilScreen(navController, perfilViewModel)
+                        }
                         composable("cadastrarMaquinaScreen") { CadastrarMaquinaScreen(navController) }
                         composable("cadastrarOrdemScreen") { CadastrarOrdemScreen(navController) }
                     }
@@ -55,7 +60,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable

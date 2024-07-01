@@ -36,8 +36,10 @@ fun InicialScreen(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(60.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
+                Spacer(modifier = Modifier.height(32.dp))
+
                 Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background),
+                    painter = painterResource(id = R.drawable.rio_riosulense),
                     contentDescription = "Logo da Empresa",
                     modifier = Modifier
                         .size(250.dp)
@@ -47,7 +49,7 @@ fun InicialScreen(navController: NavController) {
                 Button(
                     onClick = { navController.navigate("consultaMaquinasScreen") },
                     modifier = Modifier
-                        .width(320.dp)
+                        .width(250.dp)
                         .height(60.dp),
                 ) {
                     Text(text = "Máquinas")
@@ -56,7 +58,7 @@ fun InicialScreen(navController: NavController) {
                 Button(
                     onClick = { navController.navigate("consultaOrdensScreen") },
                     modifier = Modifier
-                        .width(320.dp)
+                        .width(250.dp)
                         .height(60.dp),
                 ) {
                     Text(text = "Ordens de Serviço")
@@ -65,7 +67,7 @@ fun InicialScreen(navController: NavController) {
                 Button(
                     onClick = { navController.navigate("relatoriosScreen") },
                     modifier = Modifier
-                        .width(320.dp)
+                        .width(250.dp)
                         .height(60.dp),
                 ) {
                     Text(text = "Relatórios")

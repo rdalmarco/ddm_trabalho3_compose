@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651701734582",
+    "project_id": "smartain-mobile-2",
+    "storage_bucket": "smartain-mobile-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651701734582:android:46d96dd23f6d87313f2a17",
+        "android_client_info": {
+          "package_name": "com.example.ddm_trabalho3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeB7TtUBD_yJebd-25-9ltmoYaVKGweXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
