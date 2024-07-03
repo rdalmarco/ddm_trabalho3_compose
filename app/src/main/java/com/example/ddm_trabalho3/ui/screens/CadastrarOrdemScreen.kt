@@ -4,6 +4,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material.*
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -72,7 +75,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
                             .padding(8.dp)
                     ) {
                         if (descricaoText.isEmpty()) {
-                            Text("Descrição", color = Color.Gray)
+                            Text("Descrição", color = Color.Black)
                         }
                         innerTextField()
                     }
@@ -85,7 +88,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .height(60.dp)
                     .background(Color.LightGray)
                     .padding(vertical = 8.dp)
                     .clickable {
@@ -98,7 +101,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
-                        .background(Color.White)
+                        .background(Color.LightGray)
                         .clickable {
                             maqCodigoExpanded = !maqCodigoExpanded
                         }
@@ -124,7 +127,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .height(60.dp)
                     .background(Color.LightGray)
                     .padding(vertical = 8.dp)
                     .clickable {
@@ -137,7 +140,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
-                        .background(Color.White)
+                        .background(Color.LightGray)
                         .clickable {
                             statusExpanded = !statusExpanded
                         }
@@ -164,7 +167,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .height(60.dp)
                     .background(Color.LightGray)
                     .padding(vertical = 8.dp)
                     .clickable {
@@ -177,7 +180,7 @@ fun CadastrarOrdemScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
-                        .background(Color.White)
+                        .background(Color.LightGray)
                         .clickable {
                             tipoExpanded = !tipoExpanded
                         }
@@ -198,15 +201,16 @@ fun CadastrarOrdemScreen(navController: NavController) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(100.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Button(
-                    onClick = { ordemViewModel.cadastrarOrdem(descricaoText, maqCodigoSelectedItem, true, tipoSelectedItem)
-                              navController.navigate("consultaOrdensScreen")},
+                    onClick = {
+                        ordemViewModel.cadastrarOrdem(descricaoText, maqCodigoSelectedItem, true, tipoSelectedItem)
+                        navController.navigate("consultaOrdensScreen")},
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(text = "Salvar")

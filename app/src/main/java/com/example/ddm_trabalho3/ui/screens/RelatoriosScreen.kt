@@ -6,6 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -61,7 +63,7 @@ fun RelatoriosScreen(navController: NavController) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .height(50.dp)
                     .background(Color.LightGray)
                     .padding(vertical = 8.dp)
             ) {
@@ -70,7 +72,7 @@ fun RelatoriosScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
-                        .background(Color.White)
+                        .background(Color.LightGray)
                         .clickable { expanded = true }
                 )
                 DropdownMenu(
